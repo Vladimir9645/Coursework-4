@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Удаление получателя{% endblock %}
+
+{% block content %}
+<div class="alert alert-warning">
+    <strong>Внимание!</strong> Вы собираетесь безвозвратно удалить запись о получателе. Это действие нельзя отменить.
+</div>
+
+<div class="card border-danger shadow-sm">
+    <div class="card-header bg-danger text-white">
+        Подтверждение удаления
+    </div>
+    <div class="card-body text-center">
+        
+        <h3 class="text-danger">Вы уверены, что хотите удалить получателя?</h3>
+        
+        <p class="lead">
+            «{{ recipient.full_name }}» ({{ recipient.email }})
+        </p>
+
+        <p class="text-muted mb-4">
+            После удаления получатель исчезнет из всех рассылок. История отправок сохранится, 
+            но этот email больше не будет использоваться для новых кампаний.
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+            <!-- Django автоматически проверит токен безопасности -->
+            
+            <button type="submit" class="btn btn-danger btn-lg px-5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.977 11.03a.75.75 0 0 0 1.079-.02l3-3a.75.75 0 0 0-0.01-1.05z"/>
+                    <path d="M4.117 6.5 0 9.563 1.583 11 4.117 6.5zm.975-2.195L8 1a.75.75 0 0 1 .75.75v5.692L6.394 12.437l-3 3a.75.75 0 0 1-1.06-1.06L4.16 9.028l-1.639-1.64A.75.75 0 0 1 2.5 6.604z"/>
+                </svg>
+                Да, удалить
+            </button>
+
+            <a href="{% url 'recipient-detail' pk=recipient.pk %}" class="btn btn-secondary btn-lg ms-3">Отмена</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

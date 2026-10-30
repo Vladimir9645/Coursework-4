@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{% if object %}Редактировать{% else %}Создать{% endif %} получателя{% endblock %}
+
+{% block content %}
+<h2>{% if object %}Редактировать{% else %}Создать{% endif %} получателя</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label>ФИО</label>
+        {{ form.full_name }}
+    </div>
+    <div class="mb-3">
+        <label>Email</label>
+        {{ form.email }}
+    </div>
+    <div class="mb-3">
+        <label>Комментарий</label>
+        {{ form.comment }}
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'recipient-list' %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

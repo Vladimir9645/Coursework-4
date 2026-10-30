@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Отправить рассылку #{{ mailing.id }}{% endblock %}
+
+{% block content %}
+<h3>Запустить рассылку #{{ mailing.id }}?</h3>
+<p>Тема: <strong>{{ mailing.message.subject }}</strong></p>
+<p>Получателей: {{ mailing.recipients.count }}</p>
+<p>Период: {{ mailing.start_time|date:"d.m.Y H:i" }} — {{ mailing.end_time|date:"d.m.Y H:i" }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Да, отправить</button>
+    <a href="{% url 'mailing-detail' pk=mailing.pk %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}
