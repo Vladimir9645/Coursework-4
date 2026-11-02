@@ -122,4 +122,5 @@ CACHES = {
     }
 }
 
-DEFAULT_FROM_EMAIL = 'noreply@coursework.local'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "noreply@coursework.local"
