@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Шаблон письма: {{ object.name }}{% endblock %}
+
+{% block content %}
+  <h2>{{ object.name }}</h2>
+
+  <p><strong>Тема:</strong> {{ object.subject }}</p>
+  <p><strong>Контент:</strong></p>
+  <div class="template-content">
+    {{ object.content|linebreaks }}
+  </div>
+
+  <a href="{% url 'template-update' object.pk %}" class="btn btn-primary">Редактировать</a>
+  <a href="{% url 'template-delete' object.pk %}" class="btn btn-danger">Удалить</a>
+  <a href="{% url 'template-list' %}" class="btn btn-secondary">Назад к списку</a>
+{% endblock %}

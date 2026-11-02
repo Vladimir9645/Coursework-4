@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Удаление шаблона письма{% endblock %}
+
+{% block content %}
+  <h2>Подтверждение удаления</h2>
+  <p>Вы уверены, что хотите удалить шаблон «{{ object.name }}»? Это действие нельзя отменить.</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Удалить</button>
+    <a href="{% url 'template-detail' object.pk %}" class="btn btn-secondary">Отмена</a>
+  </form>
+{% endblock %}
